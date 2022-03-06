@@ -14,45 +14,19 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     let match;
-    if (computerSelection === "rock") {
-        if (playerSelection.toLowerCase() === "rock") {
-            console.log(`It\'s a draw`);
-            match = "draw";
-        } else if (playerSelection.toLowerCase() === "scissors") {
-            console.log(`You lose!`);
-            match = "lose";
-        } else {
-        console.log(`You win!`);
-        match = "win";
-        }
-    }
 
-    if (computerSelection === "paper") {
-        if (playerSelection.toLowerCase() === "paper") {
-            console.log(`It\'s a draw`);
-            match = "draw";
-        } else if (playerSelection.toLowerCase() === "rock") {
-            console.log(`You lose! `);
-            match = "lose";
-        } else { 
-        console.log(`You win!`);
+    if ((playerSelection === "rock" && computerSelection === "scissors") 
+    || (playerSelection === "scissors" && computerSelection === "paper")
+    || (playerSelection === "paper" && computerSelection === "rock")) {
+        console.log("You win this round!");
         match = "win";
-        }
+    } else if (playerSelection === computerSelection) {
+        console.log("Draw");
+        match = "draw";
+    } else {
+        console.log("You lose this round.");
+        match = "lose";
     }
-
-    if (computerSelection === "scissors") {
-        if (playerSelection.toLowerCase() === "scissors") {
-            console.log(`It\'s a draw`);
-            match = "draw";
-        } else if (playerSelection.toLowerCase() === "paper") {
-            console.log(`You lose!`);
-            match = "lose";
-        } else { 
-        console.log(`You win!`);
-        match = "win";
-        }
-    }
-
     return match;
 }
 
@@ -76,11 +50,11 @@ function countPoints(result) {
         playerScore += 1;
         computerScore += 0;
         scoreText = `${playerScore} : ${computerScore}`
-    } else {
+    } else if (result === "lose") {
         playerScore += 0;
         computerScore += 1;
         scoreText = `${playerScore} : ${computerScore}`
-    }
+    } 
     return scoreText;
 }
 
